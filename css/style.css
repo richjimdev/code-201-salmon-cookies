@@ -1,20 +1,42 @@
 body {
   background-color: rgb(150, 217, 240);
   column-fill: balance;
-  columns: 2;
+  /* columns: 2; */
 }
 
-header {
+#locations {
+  width: 100%;
+  columns: 2;
+  background-color: rgba(236, 236, 236, 0.5);
+}
+
+.main-title {
   font-size: 200%;
   font-weight: bold;
+  color: rgb(224, 224, 224);;
+  background-color: rgb(65, 65, 65);
+  width: auto;
+  text-align: center;
+  padding: 40px 0px;
+}
+
+.sub-title {
+  color: aliceblue;
+  font-size: 200%;
 }
 
 .location-name {
-  font-size: 95%;
-  color: blue;
+  list-style-type: square;
+  font-size: 145%;
+  color: rgb(40, 40, 82);
+  padding-bottom: 20px;
 }
 
-.title {
-  color: aliceblue;
+.location-data {
+  color: rgb(49, 46, 46);
 }
 
+.location-total {
+  color: rgb(3, 129, 56);
+  font-weight: bold;
+}
