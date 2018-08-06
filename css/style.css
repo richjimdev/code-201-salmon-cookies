@@ -1,8 +1,20 @@
 body {
   background-color: rgb(150, 217, 240);
+  column-fill: balance;
+  columns: 2;
 }
 
 header {
   font-size: 200%;
   font-weight: bold;
 }
+
+.location-name {
+  font-size: 95%;
+  color: blue;
+}
+
+.title {
+  color: aliceblue;
+}
+
