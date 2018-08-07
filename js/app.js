@@ -61,7 +61,7 @@ var sum = 0;
 
 function compile() {
   var eachLocation = document.getElementById('locations');
-  var locationName = document.createElement('ul'); // personInfo
+  var locationName = document.createElement('ul');
   locationName.innerHTML = `<h3>${this.loc}</h3>`;
   var locationData;
 
@@ -69,7 +69,7 @@ function compile() {
     var averageCookies = getAvrgCookies(this);
     sum = sum + averageCookies;
     // console.log(`${makeTime(i)}: ${averageCookies}.`);
-    locationData = document.createElement('li'); // personShoe/name
+    locationData = document.createElement('li');
     locationData.textContent = `${makeTime(i)}: ${averageCookies} cookies.`;
     locationName.appendChild(locationData);
     eachLocation.appendChild(locationName);
@@ -88,8 +88,3 @@ $sta.showData();
 $seaC.showData();
 $capHill.showData();
 $alki.showData();
-
-// var totalCookies = getAvrgCookies(location);
-// totalCookies = parseInt(totalCookies) + parseInt(totalCookies);
-// return console.log(`${makeTime(i)}: ${getAvrgCookies(location)}`);
-// return getAvrgCookies(location);
