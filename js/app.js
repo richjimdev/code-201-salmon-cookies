@@ -5,18 +5,18 @@ console.log('JS loaded');
 function SalmonCookies(loc, minCust, maxCust, avrg) {
   this.loc = loc,
   this.minCust = minCust,
-  this. maxCust = maxCust,
+  this.maxCust = maxCust,
   this.avrg = avrg;
 }
 
 //All location objects being created by the constructor
 var $1np = new SalmonCookies('1st and Pike', 23, 65, 6.3);
 var $sta = new SalmonCookies('SeaTac Airport', 3, 24, 1.2);
-var $seaC = new SalmonCookies('Seattle Center', 11, 38, 1.2);
-var $capHill = new SalmonCookies('Capitol Hill', 20, 38, 3.7);
+var $seaC = new SalmonCookies('Seattle Center', 11, 38, 3.7);
+var $capHill = new SalmonCookies('Capitol Hill', 20, 38, 2.3);
 var $alki = new SalmonCookies('Alki', 2, 16, 4.6);
 
-//giving the compile function to all location objects
+//giving the rendering function to all location objects
 SalmonCookies.prototype.showData = compile;
 
 //function to calculate the random customers
@@ -38,9 +38,10 @@ function makeTime(hour) {
   return date.toLocaleString('en-US', dateOptions);
 }
 
-// creates the table head row
+// creating the table head row
 var timesOnTable;
 var timeOnTableRow = document.getElementById('times-row');
+
 for (var i = 6; i <= 20; i++) {
   timesOnTable = document.createElement('th');
   timesOnTable.textContent = makeTime(i);
@@ -51,33 +52,62 @@ var totalHeader = document.createElement('tr');
 totalHeader.textContent = 'Total';
 timeOnTableRow.appendChild(totalHeader);
 
-var sum = 0;
-
+//function to be used as method to render cookie data
 function compile() {
+  var sum = 0;
   var locationRow = document.getElementById('locations-and-data');
   var locationName = document.createElement('tr');
   locationName.textContent = this.loc;
+  var totalPerHour = [];
 
   for (var i = 6; i <= 20; i++) {
     var averageCookies = getAvrgCookies(this);
-    sum = sum + averageCookies;
-    // console.log(`${makeTime(i)}: ${averageCookies}.`);
+    sum += averageCookies;
+    // var perHour = 0;
+    // perHour = averageCookies;
+    totalPerHour.push(averageCookies);
     var locationData = document.createElement('td');
     locationData.textContent = averageCookies;
     locationName.appendChild(locationData);
     locationRow.appendChild(locationName);
-    // locationData.setAttribute('class', 'location-data');
   }
-  // locationName.setAttribute('class', 'location-name');
   var showTotal = document.createElement('td');
   showTotal.textContent = sum;
   locationName.appendChild(showTotal);
   console.log(`${this.loc}'s total is ${sum}`);
-  // showTotal.setAttribute('class', 'location-total');
+  return this.perHourSold = totalPerHour;
 }
+
+// I need a loop that pushes the result into a loop, Same loop.
+// run all locations in a loop?
+
+// var hourlyTotalsRow = document.getElementById('hourly-totals');
+// var finalHourly = [];
 
 $1np.showData();
 $sta.showData();
 $seaC.showData();
 $capHill.showData();
 $alki.showData();
+
+var allLocs = [$1np, $sta, $seaC, $capHill, $alki]
+
+// function addHourly(hour)
+for (var e = 0; e < 15; e++){
+  var perHourSum = 0;
+  for (var f = 0; f < 5; f++) {
+    perHourSum += allLocs[f].perHourSold[e];
+    // var perHourName = allLocs[i].loc;
+  }
+  console.log(perHourSum);
+  // console.log(`${perHourName} total is ${allLocs[0][e]}`);
+}
+
+// for (var e = 0; e <=15; e++) {
+//   perHourSum += this.perHourSold[e];
+//   var hourlyTotal = document.createAttribute('td');
+//   hourlyTotal.textContent = 'test' + perHourSum;
+//   hourlyTotalsRow.appendChild(hourlyTotal);
+//     }
+
+
