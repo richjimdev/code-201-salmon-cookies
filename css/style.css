@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(150, 217, 240);
+  background-color: rgb(93, 93, 211);
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -11,6 +11,13 @@ body {
   width: auto;
   text-align: center;
   padding: 40px 0px;
+}
+
+.small-logo {
+  float: left;
+  margin-top: -27px;
+  margin-left: 15px;
+  padding: 0px;
 }
 
 #locations {
