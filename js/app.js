@@ -1,45 +1,20 @@
 'use strict';
 console.log('JS loaded');
 
-var $1np = {
-  loc: '1st and Pike',
-  minCust: 23,
-  maxCust: 65,
-  avrg: 6.3,
-  showData: compile
-};
+//Constructor to create each location
+function SalmonCookies(loc, minCust, maxCust, avrg) {
+  this.loc = loc,
+  this.minCust = minCust,
+  this. maxCust = maxCust,
+  this.avrg = avrg;
+}
 
-var $sta = {
-  loc: 'SeaTac Airport',
-  minCust: 3,
-  maxCust: 24,
-  avrg: 1.2,
-  showData: compile
-};
-
-var $seaC = {
-  loc: 'Seattle Center',
-  minCust: 11,
-  maxCust: 38,
-  avrg: 3.7,
-  showData: compile
-};
-
-var $capHill = {
-  loc: 'Capitol Hill',
-  minCust: 20,
-  maxCust: 38,
-  avrg: 2.3,
-  showData: compile
-};
-
-var $alki = {
-  loc: 'Alki',
-  minCust: 2,
-  maxCust: 16,
-  avrg: 4.6,
-  showData: compile
-};
+var $1np = new SalmonCookies('1st and Pike', 23, 65, 6.3);
+var $sta = new SalmonCookies('SeaTac Airport', 3, 24, 1.2);
+var $seaC = new SalmonCookies('Seattle Center', 11, 38, 1.2);
+var $capHill = new SalmonCookies('Capitol Hill', 20, 38, 3.7);
+var $alki = new SalmonCookies('Alki', 2, 16, 4.6);
+SalmonCookies.prototype.showData = compile;
 
 function getAvrgCookies(location) {
   var randNum = Math.floor(Math.random() * (location.maxCust - location.minCust + 1) + location.minCust);

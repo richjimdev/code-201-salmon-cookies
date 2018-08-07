@@ -73,3 +73,7 @@ body {
   text-align: center;
   padding-top: 100px;
 }
+
+tr, th {
+  padding: 5px;
+}
