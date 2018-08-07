@@ -32,44 +32,48 @@ function makeTime(hour) {
   var date = new Date(`August 06, 2018 ${hour}:00:00`);
   var dateOptions = {
     hour: 'numeric',
+    minute: 'numeric',
     hour12: true
   };
   return date.toLocaleString('en-US', dateOptions);
 }
 
+// creates the table head row
 var timesOnTable;
 var timeOnTableRow = document.getElementById('times-row');
-
 for (var i = 6; i <= 20; i++) {
   timesOnTable = document.createElement('th');
   timesOnTable.textContent = makeTime(i);
   timeOnTableRow.appendChild(timesOnTable);
 }
 
+var totalHeader = document.createElement('tr');
+totalHeader.textContent = 'Total';
+timeOnTableRow.appendChild(totalHeader);
+
 var sum = 0;
 
 function compile() {
-  var eachLocation = document.getElementById('locations');
-  var locationName = document.createElement('ul');
-  locationName.innerHTML = `<h3>${this.loc}</h3>`;
-  var locationData;
+  var locationRow = document.getElementById('locations-and-data');
+  var locationName = document.createElement('tr');
+  locationName.textContent = this.loc;
 
   for (var i = 6; i <= 20; i++) {
     var averageCookies = getAvrgCookies(this);
     sum = sum + averageCookies;
     // console.log(`${makeTime(i)}: ${averageCookies}.`);
-    locationData = document.createElement('li');
-    locationData.textContent = `${makeTime(i)}: ${averageCookies} cookies.`;
+    var locationData = document.createElement('td');
+    locationData.textContent = averageCookies;
     locationName.appendChild(locationData);
-    eachLocation.appendChild(locationName);
-    locationData.setAttribute('class', 'location-data');
+    locationRow.appendChild(locationName);
+    // locationData.setAttribute('class', 'location-data');
   }
-  locationName.setAttribute('class', 'location-name');
-  console.log(`${this.loc}'s total is ${sum}`);
-  var showTotal = document.createElement('li');
-  showTotal.textContent = `Total: ${sum}`;
+  // locationName.setAttribute('class', 'location-name');
+  var showTotal = document.createElement('td');
+  showTotal.textContent = sum;
   locationName.appendChild(showTotal);
-  showTotal.setAttribute('class', 'location-total');
+  console.log(`${this.loc}'s total is ${sum}`);
+  // showTotal.setAttribute('class', 'location-total');
 }
 
 $1np.showData();
