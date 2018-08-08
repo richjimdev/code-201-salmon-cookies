@@ -20,30 +20,6 @@ body {
   padding: 0px;
 }
 
-#locations {
-  width: auto;
-  columns: 2;
-  background-color: rgba(236, 236, 236, 0.5);
-  padding-top: 40px;
-  padding-left: 100px;
-}
-
-.location-name {
-  list-style-type: square;
-  font-size: 145%;
-  color: rgb(20, 20, 150);
-  padding-bottom: 20px;
-}
-
-.location-data {
-  color: rgb(49, 46, 46);
-}
-
-.location-total {
-  color: rgb(11, 90, 44);
-  font-weight: 700;
-}
-
 .top-header {
   background-color: rgb(80, 74, 48);
   background-image: url(../img/seattle.jfif);
@@ -81,6 +57,29 @@ body {
   padding-top: 100px;
 }
 
-tr, th {
-  padding: 5px;
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  margin: 20px;
+  border: 10px solid rgb(54, 51, 51);
+  background-color: aliceblue;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .5);
+}
+
+th, .column1 {
+  padding: 20px;
+  border: 1px solid rgb(54, 51, 51);
+  background-color: rgb(201, 135, 59);
+}
+
+tr, td {
+  padding: 20px;
+  background-color: aliceblue;
+  border: 1px dotted rgb(54, 51, 51);
+}
+
+th:hover, tr:hover {
+  background-color: rgb(255, 234, 166);
 }

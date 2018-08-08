@@ -16,10 +16,10 @@ var $seaC = new SalmonCookies('Seattle Center', 11, 38, 3.7);
 var $capHill = new SalmonCookies('Capitol Hill', 20, 38, 2.3);
 var $alki = new SalmonCookies('Alki', 2, 16, 4.6);
 
-//giving the rendering function to all location objects
+//giving the rendering to table function to all location objects
 SalmonCookies.prototype.showData = compile;
 
-//function to calculate the random customers
+// RNG function
 function getAvrgCookies(location) {
   var randNum = Math.floor(Math.random() * (location.maxCust - location.minCust + 1) + location.minCust);
   // console.log(`the random number generated for ${$1np.loc} was ${randNum}`);
@@ -27,7 +27,7 @@ function getAvrgCookies(location) {
   return Math.round(total);
 }
 
-//function to display time in 12hour format
+//function to display time in 12hour format - yay google
 function makeTime(hour) {
   var date = new Date(`August 06, 2018 ${hour}:00:00`);
   var dateOptions = {
@@ -38,7 +38,7 @@ function makeTime(hour) {
   return date.toLocaleString('en-US', dateOptions);
 }
 
-// creating the table head row
+// creating the table head row (6am - 8pm)
 var timesOnTable;
 var timeOnTableRow = document.getElementById('times-row');
 
@@ -48,20 +48,19 @@ for (var i = 6; i <= 20; i++) {
   timeOnTableRow.appendChild(timesOnTable);
 }
 
-//function to be used as method to render cookie data
+//function to be used as method to render cookie data to table
 function compile() {
   var sum = 0;
   var locationRow = document.getElementById('locations-and-data');
   var locationName = document.createElement('tr');
   locationName.textContent = this.loc;
+  locationName.className = 'column1';
   var totalPerHour = [];
 
   for (var i = 6; i <= 20; i++) {
     var averageCookies = getAvrgCookies(this);
     sum += averageCookies;
-    // var perHour = 0;
-    // perHour = averageCookies;
-    totalPerHour.push(averageCookies);
+    totalPerHour.push(averageCookies); // adds an array to the function with all numbers per hour
     var locationData = document.createElement('td');
     locationData.textContent = averageCookies;
     locationName.appendChild(locationData);
@@ -81,11 +80,12 @@ $seaC.showData();
 $capHill.showData();
 $alki.showData();
 
-var totalHeader = document.createElement('tr');
+// 'Total' row header
+var totalHeader = document.createElement('th');
 totalHeader.textContent = 'Total';
 timeOnTableRow.appendChild(totalHeader);
 
-// footer with number
+// footer with numbers
 var hourlyTotalsRow = document.getElementById('hourly-totals');
 var allLocs = [$1np, $sta, $seaC, $capHill, $alki]
 var calcGrandTotal = 0;
@@ -103,14 +103,7 @@ for (var e = 0; e < 15; e++){
   calcGrandTotal += perHourSum;
 }
 
+//And finally, the grand total
 var grandTotal = document.createElement('td');
 grandTotal.textContent = `Grand Total: ${calcGrandTotal}`;
 hourlyTotalsRow.appendChild(grandTotal);
-
-// ADD GRANDTOTAL TO END
-
-// add totals at end!
-
-
-
-
