@@ -25,10 +25,11 @@ body {
   background-image: url(../img/seattle.jfif);
   background-blend-mode: multiply;
   background-size: cover;
-  background-position: bottom;
   width: 100%;
   height: 450px;
-  background-attachment: scroll;
+  background-attachment: fixed;
+  background-position: 0 -120px;
+  background-repeat: no-repeat;
 }
 
 .fish-title {
@@ -41,7 +42,9 @@ body {
 
 .link {
   font-weight: bold;
+  display: block;
   font-size: 150%;
+  padding-top: 35px;
 }
 
 .main-page-content {
@@ -55,6 +58,18 @@ body {
 .center-logo {
   text-align: center;
   padding-top: 100px;
+  opacity: 0;
+  animation-name: title-in;
+  animation-duration: 2s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes title-in {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+  0% {padding-top: 60px;}
+  100% {padding-top: 100px;}
 }
 
 .table-container {
@@ -65,7 +80,7 @@ table {
   margin: 20px;
   border: 10px solid rgb(54, 51, 51);
   background-color: aliceblue;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .5);
+  box-shadow: -1px 7px 14px -2px rgba(0, 0, 0, 0.3);
 }
 
 th, .column1 {
@@ -82,4 +97,17 @@ tr, td {
 
 th:hover, tr:hover {
   background-color: rgb(255, 234, 166);
+}
+
+.footer {
+  width: 100%;
+  height: 100px;
+  background-color: rgb(39, 39, 39);
+  text-align: center;
+  color: whitesmoke;
+}
+
+footer {
+  padding-top: 30px;
+  font-size: 110%;
 }
