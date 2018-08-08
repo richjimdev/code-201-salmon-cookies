@@ -48,10 +48,6 @@ for (var i = 6; i <= 20; i++) {
   timeOnTableRow.appendChild(timesOnTable);
 }
 
-var totalHeader = document.createElement('tr');
-totalHeader.textContent = 'Total';
-timeOnTableRow.appendChild(totalHeader);
-
 //function to be used as method to render cookie data
 function compile() {
   var sum = 0;
@@ -78,36 +74,43 @@ function compile() {
   return this.perHourSold = totalPerHour;
 }
 
-// I need a loop that pushes the result into a loop, Same loop.
-// run all locations in a loop?
-
-// var hourlyTotalsRow = document.getElementById('hourly-totals');
-// var finalHourly = [];
-
+// rendering cookie data for all locations
 $1np.showData();
 $sta.showData();
 $seaC.showData();
 $capHill.showData();
 $alki.showData();
 
-var allLocs = [$1np, $sta, $seaC, $capHill, $alki]
+var totalHeader = document.createElement('tr');
+totalHeader.textContent = 'Total';
+timeOnTableRow.appendChild(totalHeader);
 
-// function addHourly(hour)
+// footer with number
+var hourlyTotalsRow = document.getElementById('hourly-totals');
+var allLocs = [$1np, $sta, $seaC, $capHill, $alki]
+var calcGrandTotal = 0;
+
+// loop that adds the totals per hour
 for (var e = 0; e < 15; e++){
   var perHourSum = 0;
   for (var f = 0; f < 5; f++) {
     perHourSum += allLocs[f].perHourSold[e];
-    // var perHourName = allLocs[i].loc;
   }
+  var hourlyTotal = document.createElement('td');
+  hourlyTotal.textContent = perHourSum;
+  hourlyTotalsRow.appendChild(hourlyTotal);
   console.log(perHourSum);
-  // console.log(`${perHourName} total is ${allLocs[0][e]}`);
+  calcGrandTotal += perHourSum;
 }
 
-// for (var e = 0; e <=15; e++) {
-//   perHourSum += this.perHourSold[e];
-//   var hourlyTotal = document.createAttribute('td');
-//   hourlyTotal.textContent = 'test' + perHourSum;
-//   hourlyTotalsRow.appendChild(hourlyTotal);
-//     }
+var grandTotal = document.createElement('td');
+grandTotal.textContent = `Grand Total: ${calcGrandTotal}`;
+hourlyTotalsRow.appendChild(grandTotal);
+
+// ADD GRANDTOTAL TO END
+
+// add totals at end!
+
+
 
 
