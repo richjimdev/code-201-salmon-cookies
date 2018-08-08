@@ -60,7 +60,7 @@ function compile() {
   for (var i = 6; i <= 20; i++) {
     var averageCookies = getAvrgCookies(this);
     sum += averageCookies;
-    totalPerHour.push(averageCookies); // adds an array to the function with all numbers per hour
+    totalPerHour.push(averageCookies); // adds an array to the object with all numbers per hour
     var locationData = document.createElement('td');
     locationData.textContent = averageCookies;
     locationName.appendChild(locationData);
@@ -99,7 +99,6 @@ for (var e = 0; e < 15; e++){
   var hourlyTotal = document.createElement('td');
   hourlyTotal.textContent = perHourSum;
   hourlyTotalsRow.appendChild(hourlyTotal);
-  console.log(perHourSum);
   calcGrandTotal += perHourSum;
 }
 
