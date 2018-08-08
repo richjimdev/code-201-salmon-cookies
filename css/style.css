@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(150, 217, 240);
+  background-color: rgb(93, 93, 211);
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -13,28 +13,11 @@ body {
   padding: 40px 0px;
 }
 
-#locations {
-  width: auto;
-  columns: 2;
-  background-color: rgba(236, 236, 236, 0.5);
-  padding-top: 40px;
-  padding-left: 100px;
-}
-
-.location-name {
-  list-style-type: square;
-  font-size: 145%;
-  color: rgb(20, 20, 150);
-  padding-bottom: 20px;
-}
-
-.location-data {
-  color: rgb(49, 46, 46);
-}
-
-.location-total {
-  color: rgb(11, 90, 44);
-  font-weight: 700;
+.small-logo {
+  float: left;
+  margin-top: -27px;
+  margin-left: 15px;
+  padding: 0px;
 }
 
 .top-header {
@@ -42,10 +25,11 @@ body {
   background-image: url(../img/seattle.jfif);
   background-blend-mode: multiply;
   background-size: cover;
-  background-position: bottom;
   width: 100%;
   height: 450px;
-  background-attachment: scroll;
+  background-attachment: fixed;
+  background-position: 0 -120px;
+  background-repeat: no-repeat;
 }
 
 .fish-title {
@@ -58,7 +42,9 @@ body {
 
 .link {
   font-weight: bold;
+  display: block;
   font-size: 150%;
+  padding-top: 35px;
 }
 
 .main-page-content {
@@ -72,4 +58,56 @@ body {
 .center-logo {
   text-align: center;
   padding-top: 100px;
+  opacity: 0;
+  animation-name: title-in;
+  animation-duration: 2s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes title-in {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+  0% {padding-top: 60px;}
+  100% {padding-top: 100px;}
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  margin: 20px;
+  border: 10px solid rgb(54, 51, 51);
+  background-color: aliceblue;
+  box-shadow: -1px 7px 14px -2px rgba(0, 0, 0, 0.3);
+}
+
+th, .column1 {
+  padding: 20px;
+  border: 1px solid rgb(54, 51, 51);
+  background-color: rgb(201, 135, 59);
+}
+
+tr, td {
+  padding: 20px;
+  background-color: aliceblue;
+  border: 1px dotted rgb(54, 51, 51);
+}
+
+th:hover, tr:hover {
+  background-color: rgb(255, 234, 166);
+}
+
+.footer {
+  width: 100%;
+  height: 100px;
+  background-color: rgb(39, 39, 39);
+  text-align: center;
+  color: whitesmoke;
+}
+
+footer {
+  padding-top: 30px;
+  font-size: 110%;
 }

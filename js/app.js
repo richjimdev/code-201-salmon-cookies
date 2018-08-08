@@ -1,46 +1,25 @@
 'use strict';
 console.log('JS loaded');
 
-var $1np = {
-  loc: '1st and Pike',
-  minCust: 23,
-  maxCust: 65,
-  avrg: 6.3,
-  showData: compile
-};
+//Constructor to create each location
+function SalmonCookies(loc, minCust, maxCust, avrg) {
+  this.loc = loc,
+  this.minCust = minCust,
+  this.maxCust = maxCust,
+  this.avrg = avrg;
+}
 
-var $sta = {
-  loc: 'SeaTac Airport',
-  minCust: 3,
-  maxCust: 24,
-  avrg: 1.2,
-  showData: compile
-};
+//All location objects being created by the constructor
+var $1np = new SalmonCookies('1st and Pike', 23, 65, 6.3);
+var $sta = new SalmonCookies('SeaTac Airport', 3, 24, 1.2);
+var $seaC = new SalmonCookies('Seattle Center', 11, 38, 3.7);
+var $capHill = new SalmonCookies('Capitol Hill', 20, 38, 2.3);
+var $alki = new SalmonCookies('Alki', 2, 16, 4.6);
 
-var $seaC = {
-  loc: 'Seattle Center',
-  minCust: 11,
-  maxCust: 38,
-  avrg: 3.7,
-  showData: compile
-};
+//giving the rendering to table function to all location objects
+SalmonCookies.prototype.showData = compile;
 
-var $capHill = {
-  loc: 'Capitol Hill',
-  minCust: 20,
-  maxCust: 38,
-  avrg: 2.3,
-  showData: compile
-};
-
-var $alki = {
-  loc: 'Alki',
-  minCust: 2,
-  maxCust: 16,
-  avrg: 4.6,
-  showData: compile
-};
-
+// RNG function
 function getAvrgCookies(location) {
   var randNum = Math.floor(Math.random() * (location.maxCust - location.minCust + 1) + location.minCust);
   // console.log(`the random number generated for ${$1np.loc} was ${randNum}`);
@@ -48,48 +27,83 @@ function getAvrgCookies(location) {
   return Math.round(total);
 }
 
+//function to display time in 12hour format - yay google
 function makeTime(hour) {
   var date = new Date(`August 06, 2018 ${hour}:00:00`);
   var dateOptions = {
     hour: 'numeric',
+    minute: 'numeric',
     hour12: true
   };
   return date.toLocaleString('en-US', dateOptions);
 }
 
-var sum = 0;
+// creating the table head row (6am - 8pm)
+var timesOnTable;
+var timeOnTableRow = document.getElementById('times-row');
 
+for (var i = 6; i <= 20; i++) {
+  timesOnTable = document.createElement('th');
+  timesOnTable.textContent = makeTime(i);
+  timeOnTableRow.appendChild(timesOnTable);
+}
+
+//function to be used as method to render cookie data to table
 function compile() {
-  var eachLocation = document.getElementById('locations');
-  var locationName = document.createElement('ul'); // personInfo
-  locationName.innerHTML = `<h3>${this.loc}</h3>`;
-  var locationData;
+  var sum = 0;
+  var locationRow = document.getElementById('locations-and-data');
+  var locationName = document.createElement('tr');
+  locationName.textContent = this.loc;
+  locationName.className = 'column1';
+  var totalPerHour = [];
 
   for (var i = 6; i <= 20; i++) {
     var averageCookies = getAvrgCookies(this);
-    sum = sum + averageCookies;
-    // console.log(`${makeTime(i)}: ${averageCookies}.`);
-    locationData = document.createElement('li'); // personShoe/name
-    locationData.textContent = `${makeTime(i)}: ${averageCookies} cookies.`;
+    sum += averageCookies;
+    totalPerHour.push(averageCookies); // adds an array to the function with all numbers per hour
+    var locationData = document.createElement('td');
+    locationData.textContent = averageCookies;
     locationName.appendChild(locationData);
-    eachLocation.appendChild(locationName);
-    locationData.setAttribute('class', 'location-data');
+    locationRow.appendChild(locationName);
   }
-  locationName.setAttribute('class', 'location-name');
-  console.log(`${this.loc}'s total is ${sum}`);
-  var showTotal = document.createElement('li');
-  showTotal.textContent = `Total: ${sum}`;
+  var showTotal = document.createElement('td');
+  showTotal.textContent = sum;
   locationName.appendChild(showTotal);
-  showTotal.setAttribute('class', 'location-total');
+  console.log(`${this.loc}'s total is ${sum}`);
+  return this.perHourSold = totalPerHour;
 }
 
+// rendering cookie data for all locations
 $1np.showData();
 $sta.showData();
 $seaC.showData();
 $capHill.showData();
 $alki.showData();
 
-// var totalCookies = getAvrgCookies(location);
-// totalCookies = parseInt(totalCookies) + parseInt(totalCookies);
-// return console.log(`${makeTime(i)}: ${getAvrgCookies(location)}`);
-// return getAvrgCookies(location);
+// 'Total' row header
+var totalHeader = document.createElement('th');
+totalHeader.textContent = 'Total';
+timeOnTableRow.appendChild(totalHeader);
+
+// footer with numbers
+var hourlyTotalsRow = document.getElementById('hourly-totals');
+var allLocs = [$1np, $sta, $seaC, $capHill, $alki]
+var calcGrandTotal = 0;
+
+// loop that adds the totals per hour
+for (var e = 0; e < 15; e++){
+  var perHourSum = 0;
+  for (var f = 0; f < 5; f++) {
+    perHourSum += allLocs[f].perHourSold[e];
+  }
+  var hourlyTotal = document.createElement('td');
+  hourlyTotal.textContent = perHourSum;
+  hourlyTotalsRow.appendChild(hourlyTotal);
+  console.log(perHourSum);
+  calcGrandTotal += perHourSum;
+}
+
+//And finally, the grand total
+var grandTotal = document.createElement('td');
+grandTotal.textContent = `Grand Total: ${calcGrandTotal}`;
+hourlyTotalsRow.appendChild(grandTotal);
