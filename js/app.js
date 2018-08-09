@@ -19,6 +19,8 @@ var $alki = new SalmonCookies('Alki', 2, 16, 4.6);
 //giving the rendering to table function to all location objects
 SalmonCookies.prototype.showData = compile;
 
+
+
 // RNG function
 function getAvrgCookies(location) {
   var randNum = Math.floor(Math.random() * (location.maxCust - location.minCust + 1) + location.minCust);
@@ -48,6 +50,11 @@ for (var i = 6; i <= 20; i++) {
   timeOnTableRow.appendChild(timesOnTable);
 }
 
+var allLocs = [];
+var totalPerHour = [];
+
+var allNumbers = {};
+
 //function to be used as method to render cookie data to table
 function compile() {
   var sum = 0;
@@ -55,10 +62,8 @@ function compile() {
   var locationName = document.createElement('tr');
   locationName.textContent = this.loc;
   locationName.className = 'column1';
-  var allLocs = [
-  ];
-  var totalPerHour = [];
 
+  // function storeData() {
   for (var i = 6; i <= 20; i++) {
     var averageCookies = getAvrgCookies(this);
     sum += averageCookies;
@@ -68,11 +73,13 @@ function compile() {
     locationName.appendChild(locationData);
     locationRow.appendChild(locationName);
   }
+  // }
+  // allLocs.push(totalPerHour);
   var showTotal = document.createElement('td');
   showTotal.textContent = sum;
   locationName.appendChild(showTotal);
   console.log(`${this.loc}'s total is ${sum}`);
-  // return this.perHourSold = totalPerHour;
+  return allNumbers.perHourSold = totalPerHour;
 }
 
 // rendering cookie data for all locations
