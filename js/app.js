@@ -55,6 +55,8 @@ var totalPerHour = [];
 
 var allNumbers = {};
 
+var totalHeader = document.createElement('th');
+
 //function to be used as method to render cookie data to table
 function compile() {
   var sum = 0;
@@ -80,6 +82,33 @@ function compile() {
   locationName.appendChild(showTotal);
   console.log(`${this.loc}'s total is ${sum}`);
   return allNumbers.perHourSold = totalPerHour;
+
+  // 'Total' row header
+  totalHeader.textContent = 'Total';
+  timeOnTableRow.appendChild(totalHeader);
+
+  // footer with numbers
+  var hourlyTotalsRow = document.getElementById('hourly-totals');
+  var allLocs = [$1np, $sta, $seaC, $capHill, $alki];
+  var calcGrandTotal = 0;
+
+  // loop that adds the totals per hour
+  for (var e = 0; e < 15; e++){
+  var perHourSum = 0;
+  for (var f = 0; f < allLocs.length; f++) {
+    perHourSum += allLocs[f].perHourSold[e];
+  }
+  var hourlyTotal = document.createElement('td');
+  hourlyTotal.textContent = perHourSum;
+  hourlyTotalsRow.appendChild(hourlyTotal);
+  calcGrandTotal += perHourSum;
+}
+
+//And finally, the grand total
+var grandTotal = document.createElement('td');
+grandTotal.textContent = `Grand Total: ${calcGrandTotal}`;
+hourlyTotalsRow.appendChild(grandTotal);
+
 }
 
 // rendering cookie data for all locations
@@ -89,15 +118,15 @@ $seaC.showData();
 $capHill.showData();
 $alki.showData();
 
-// 'Total' row header
-var totalHeader = document.createElement('th');
-totalHeader.textContent = 'Total';
-timeOnTableRow.appendChild(totalHeader);
+// // 'Total' row header
+// var totalHeader = document.createElement('th');
+// totalHeader.textContent = 'Total';
+// timeOnTableRow.appendChild(totalHeader);
 
-// footer with numbers
-var hourlyTotalsRow = document.getElementById('hourly-totals');
-// var allLocs = [$1np, $sta, $seaC, $capHill, $alki];
-var calcGrandTotal = 0;
+// // footer with numbers
+// var hourlyTotalsRow = document.getElementById('hourly-totals');
+// // var allLocs = [$1np, $sta, $seaC, $capHill, $alki];
+// var calcGrandTotal = 0;
 
 // loop that adds the totals per hour
 // for (var e = 0; e < 15; e++){
@@ -111,10 +140,10 @@ var calcGrandTotal = 0;
 //   calcGrandTotal += perHourSum;
 // }
 
-//And finally, the grand total
-var grandTotal = document.createElement('td');
-grandTotal.textContent = `Grand Total: ${calcGrandTotal}`;
-hourlyTotalsRow.appendChild(grandTotal);
+// //And finally, the grand total
+// var grandTotal = document.createElement('td');
+// grandTotal.textContent = `Grand Total: ${calcGrandTotal}`;
+// hourlyTotalsRow.appendChild(grandTotal);
 
 function formNewLoc (e) {
   e.preventDefault();
