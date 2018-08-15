@@ -47,18 +47,67 @@ body {
   padding-top: 35px;
 }
 
-.main-page-content, .main-page-content2 {
+.main-page-content, .main-page-content2, .main-page-content3, .main-page-content4 {
   width: 100%;
-  height: 90px;
+  height: 280px;
   background-color:#A54631;
   text-align: center;
   padding-top: 50px;
 }
 
-.main-page-content2 {
-  height: 130px;
-  background-image: url()
+.main-page-content img {
+  max-width: 250px;
+  padding: 20px 50px 50px 50px;
 }
+
+.main-page-content2 {
+  height: 250px;
+  background-image: url("../img/family.jpg");
+  background-color: blanchedalmond;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-page-content3 {
+  background-color: rgb(148, 185, 173);
+  height: 300px;
+}
+
+.main-page-content4 {
+  background-color: rgb(93, 93, 211);
+  height: auto;
+  padding-bottom: 40px;
+}
+
+.main-page-content4 p, .main-page-content4 h2 {
+  font-size: 150%;
+}
+
+.main-page-content4 h2 {
+  margin-top: 30px;
+}
+
+.product-container {
+  width: 960px;
+  margin: auto;
+}
+
+.product-container img {
+  /* float: right; */
+  max-width: 150px;
+  padding: 35px
+}
+
+.main-page-content2 h1 {
+  color: rgb(129, 39, 39);
+  font-size:35px;
+}
+
+.main-page-content3 h1 {
+  color: rgb(41, 37, 37);
+  font-size: 25px;
+}
+
 
 .center-logo {
   text-align: center;
